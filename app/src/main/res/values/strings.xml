@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RestaurantApp</string>
+    <string name="usermail">display user mail here</string>
+    <string name="restaurant_default_description">restaurant_default_description</string>
+    <string name="Create_new_restaurant">Create new restaurant </string>
+    <string name="title_activity_maps">Map</string>
+</resources>

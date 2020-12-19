@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map_resturant"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".MapsActivity">
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="237dp"
+        android:layout_gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/scan_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/background_btn_onmap"
+            android:src="@drawable/qr_code_icon"
+            app:layout_constraintEnd_toEndOf="@+id/call_btn"
+            app:layout_constraintTop_toBottomOf="@+id/call_btn" />
+
+        <ImageButton
+            android:id="@+id/call_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/background_btn_onmap"
+            android:src="@drawable/call_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/mylocation_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/background_btn_onmap"
+            android:src="@drawable/mylocation_icon"
+            app:layout_constraintEnd_toEndOf="@+id/scan_btn"
+            app:layout_constraintTop_toBottomOf="@+id/scan_btn" />
+
+        <ImageButton
+            android:id="@+id/details_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/location_details_icon"
+            app:layout_constraintEnd_toEndOf="@+id/mylocation_btn"
+            app:layout_constraintTop_toBottomOf="@+id/mylocation_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
