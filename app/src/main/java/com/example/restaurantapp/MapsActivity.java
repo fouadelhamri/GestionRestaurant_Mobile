@@ -74,7 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         ButterKnife.bind(this);
 //////
-        MarkCurrentLocation();
     }
 
     public Restaurant restaurant;
@@ -89,20 +88,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         positionF=location;
         mMap.addMarker(new MarkerOptions().position(location).title(restaurant.getNom()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 20));
-/////////////////
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                Log.d("INFORMATION","LOOOOOOOOOONG CLIKEd");
-                positionD=latLng;
-                MarkerOptions markerOptions=new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-                mMap.addMarker(markerOptions.title(getAddress(latLng.latitude,latLng.longitude)));
-                Log.d("INFORMATION"," u choosed this location : "+latLng.toString());
-
-            }
-        });
          }
 
     public String getAddress(double lat, double lng) {
@@ -144,20 +129,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     void details_location() {
         LatLng location = new LatLng(restaurant.getLatitude(), restaurant.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.map_resturant), getAddress(34.013099, -6.831316), Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.map_resturant), getAddress(restaurant.getLatitude(),restaurant.getLongitude()), Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
     @OnClick(R.id.scan_btn)
-    void trace_direction(){
-        ///GET DIRection
-        LatLng positionInitial=new LatLng(33.982581,-6.821499);//Localisation takdoum
-        Log.d("ONFORMATO","position takdoum = "+positionInitial.toString());
-        String url=getRequesUrl(positionInitial,positionF);
-        TaskRequestDirection taskRequestDirection=new TaskRequestDirection();
-        taskRequestDirection.execute(url);
-        Log.d("information",url);
+    void scanner(){
 
+    }
+
+    @OnClick(R.id.direction_btn)
+    void direction(){
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.map_resturant), "La fonction pour tracerla direction est dans le code source ,mais necessite un payement pour l'activation !", Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
     public void MarkCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -177,6 +161,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    void trace_direction(){
+        ///GET DIRection
+        LatLng positionInitial=new LatLng(33.982581,-6.821499);//Localisation takdoum
+        Log.d("ONFORMATO","position takdoum = "+positionInitial.toString());
+        String url=getRequesUrl(positionInitial,positionF);
+        TaskRequestDirection taskRequestDirection=new TaskRequestDirection();
+        taskRequestDirection.execute(url);
+        Log.d("information",url);
+
+    }
+
     public String getRequesUrl(LatLng origin,LatLng dest){
         String str_org="origin="+origin.latitude+","+origin.longitude;
         String str_des="destination="+dest.latitude+","+dest.longitude;
@@ -189,100 +184,99 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return url;
     }
 
-public String requestDirection(String reqUrl) throws IOException {
-        String respone="";
-    InputStream inputStream=null;
-    HttpURLConnection httpURLConnection=null;
-    try {
-        URL url=new URL(reqUrl);
-        httpURLConnection=(HttpURLConnection)url.openConnection();
-        httpURLConnection.connect();
-        ///get the response
-        inputStream=httpURLConnection.getInputStream();
-        InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
-        BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
-        StringBuffer stringBuffer=new StringBuffer();
-        String line="";
-        while ( (line = bufferedReader.readLine()) !=null){
-            stringBuffer.append(line);
+    public String requestDirection(String reqUrl) throws IOException {
+            String respone="";
+        InputStream inputStream=null;
+        HttpURLConnection httpURLConnection=null;
+        try {
+            URL url=new URL(reqUrl);
+            httpURLConnection=(HttpURLConnection)url.openConnection();
+            httpURLConnection.connect();
+            ///get the response
+            inputStream=httpURLConnection.getInputStream();
+            InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
+            BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
+            StringBuffer stringBuffer=new StringBuffer();
+            String line="";
+            while ( (line = bufferedReader.readLine()) !=null){
+                stringBuffer.append(line);
+            }
+            respone=stringBuffer.toString();
+            bufferedReader.close();
+            inputStreamReader.close();
+        }  catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(inputStream!=null){
+                inputStream.close();
+            }httpURLConnection.disconnect();
         }
-        respone=stringBuffer.toString();
-        bufferedReader.close();
-        inputStreamReader.close();
-    }  catch(Exception e) {
-        e.printStackTrace();
-    }finally {
-        if(inputStream!=null){
-            inputStream.close();
-        }httpURLConnection.disconnect();
+        return respone;
     }
-    return respone;
-}
 
-public class TaskRequestDirection extends AsyncTask<String,Void,String > {
+    public class TaskRequestDirection extends AsyncTask<String,Void,String > {
 
-    @Override
-    protected String doInBackground(String... strings) {
-        String response="";
+        @Override
+        protected String doInBackground(String... strings) {
+            String response="";
+                try {
+                    response=requestDirection(strings[0]);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //parse json here
+            TaskParser taskParser=new TaskParser();
+            taskParser.execute(s);
+        }
+    }
+
+    public class TaskParser extends AsyncTask<String,Void,List<List<HashMap<String,String>>> >{
+
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(String... strings) {
+            JSONObject jsonObject=null;
+            List<List<HashMap<String,String>>> routes=null;
             try {
-                response=requestDirection(strings[0]);
-            } catch (IOException e) {
+                jsonObject=new JSONObject(strings[0]);
+                Log.d("information jsonobject",jsonObject.toString());
+
+                DirectionParser directionParser=new DirectionParser();
+                routes=directionParser.parse(jsonObject);
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
-        return response;
-    }
-
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        //parse json here
-        TaskParser taskParser=new TaskParser();
-        taskParser.execute(s);
-    }
-}
-
-public class TaskParser extends AsyncTask<String,Void,List<List<HashMap<String,String>>> >{
-
-    @Override
-    protected List<List<HashMap<String, String>>> doInBackground(String... strings) {
-        JSONObject jsonObject=null;
-        List<List<HashMap<String,String>>> routes=null;
-        try {
-            jsonObject=new JSONObject(strings[0]);
-            Log.d("information jsonobject",jsonObject.toString());
-
-            DirectionParser directionParser=new DirectionParser();
-            routes=directionParser.parse(jsonObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            return routes;
         }
-        return routes;
-    }
 
-    @Override
-    protected void onPostExecute(List<List<HashMap<String, String>>> lists) {
-        //get list route and displayin into map
-        ArrayList points=null;
-        PolylineOptions polygonOptions=null;
-        for (List<HashMap<String,String>> path : lists){
-            points=new ArrayList();
-            polygonOptions=new PolylineOptions();
-            for ( HashMap<String,String> point :path) {
-                double lat = Double.parseDouble(point.get("lat"));
-                double lon = Double.parseDouble(point.get("lon"));
-                points.add(new LatLng(lat, lon));
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> lists) {
+            //get list route and displayin into map
+            ArrayList points=null;
+            PolylineOptions polygonOptions=null;
+            for (List<HashMap<String,String>> path : lists){
+                points=new ArrayList();
+                polygonOptions=new PolylineOptions();
+                for ( HashMap<String,String> point :path) {
+                    double lat = Double.parseDouble(point.get("lat"));
+                    double lon = Double.parseDouble(point.get("lon"));
+                    points.add(new LatLng(lat, lon));
+                }
+                polygonOptions.addAll(points);
+                polygonOptions.color(Color.BLUE);
+                polygonOptions.geodesic(true);
+                polygonOptions.width(15);
             }
-            polygonOptions.addAll(points);
-            polygonOptions.color(Color.BLUE);
-            polygonOptions.geodesic(true);
-            polygonOptions.width(15);
-        }
-        if(polygonOptions != null){
-            mMap.addPolyline(polygonOptions);
-        }else {
-            Toast.makeText(MapsActivity.this, "Direction not found ", Toast.LENGTH_SHORT).show();
+            if(polygonOptions != null){
+                mMap.addPolyline(polygonOptions);
+            }else {
+                Toast.makeText(MapsActivity.this, "Direction not found ", Toast.LENGTH_SHORT).show();
+            }
         }
     }
-}
-
 }

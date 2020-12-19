@@ -8,7 +8,6 @@
     tools:context=".MapsActivity">
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
@@ -17,7 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="237dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_vertical">
 
         <ImageButton
@@ -55,8 +54,19 @@
             android:id="@+id/details_btn"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginTop="4dp"
             android:background="@android:color/transparent"
             android:src="@drawable/location_details_icon"
+            app:layout_constraintEnd_toEndOf="@+id/mylocation_btn"
+            app:layout_constraintTop_toBottomOf="@+id/direction_btn" />
+
+        <ImageButton
+            android:id="@+id/direction_btn"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/background_btn_onmap"
+            android:src="@drawable/direction_icon"
             app:layout_constraintEnd_toEndOf="@+id/mylocation_btn"
             app:layout_constraintTop_toBottomOf="@+id/mylocation_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>

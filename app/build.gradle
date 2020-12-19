@@ -29,7 +29,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -43,4 +42,6 @@ dependencies {
     ///maps
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+   //scanne QR code
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
 }
