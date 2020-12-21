@@ -16,7 +16,6 @@ public class RestaurantDB extends SQLiteOpenHelper {
     public RestaurantDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
     public static final  int DATABASE_VERSION=1;
     public static final String CATEGORIE_TABLE  = "categorie";
     public static final String CATEGORIE_ID = "id";
@@ -30,11 +29,9 @@ public class RestaurantDB extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         db.execSQL("INSERT INTO categorie(nom) VALUES('"+nom+"');");
-        db.close();
     }
 
     public ArrayList<Categorie> readCategorie(){
-
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor  = db.query(CATEGORIE_TABLE,null,null,null,null,null,null,null);
         ArrayList<Categorie> categories = new ArrayList<Categorie>();
@@ -79,7 +76,7 @@ public class RestaurantDB extends SQLiteOpenHelper {
         values.put(RESTAURANT_DESCRIPTION,desc);
         values.put(RESTAURANT_IMAGE,img);
         db.insert(RESTAURANT_TABLE,null,values);
-    db.close();
+
     }
 
     public static final String CATEGORIEINRESTAURANT_TABLE  = "categorieinrestaurant";

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddRestaurantActivity">
+
+    <Button
+        android:id="@+id/addreastaurant_addbtn"
+        android:layout_width="390dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_btn"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/Create_new_restaurant"
+        android:textColor="@color/blue_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/gray_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/restaurant_activity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Add restaurant"
+            android:textColor="@color/gold"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/addrestaurant_name"
+        android:textColor="@color/blue_black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addrestaurant_name"
+        app:layout_constraintStart_toStartOf="@+id/addrestaurant_name" />
+
+    <EditText
+        android:id="@+id/addrestaurant_name"
+        android:layout_width="390dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/tel_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/addrestaurant_tel"
+        android:textColor="@color/blue_black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/addrestaurant_tel"
+        app:layout_constraintStart_toStartOf="@+id/addrestaurant_tel" />
+
+    <EditText
+        android:id="@+id/addrestaurant_tel"
+        android:layout_width="390dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_name" />
+
+    <TextView
+        android:id="@+id/description_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="@string/addrestaurant_description"
+        android:textColor="@color/blue_black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addrestaurant_description"
+        app:layout_constraintStart_toStartOf="@+id/addrestaurant_description" />
+
+    <EditText
+        android:id="@+id/addrestaurant_description"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:width="390dp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:maxLines="3"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_tel" />
+
+    <TextView
+        android:id="@+id/addrestaurant_addLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:height="40dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
+        android:text="@string/addrestautant_addLocation"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

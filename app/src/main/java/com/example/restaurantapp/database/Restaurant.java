@@ -22,6 +22,20 @@ public class Restaurant implements Serializable {
         this.description=description;
     }
 
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", etat='" + etat + '\'' +
+                ", tel='" + tel + '\'' +
+                ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public String getDescription() {
         return description;
     }

@@ -135,7 +135,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @OnClick(R.id.scan_btn)
     void scanner(){
-
+Intent scannerActivity= new Intent(this,ScanQrActivity.class);
+startActivity(scannerActivity);
     }
 
     @OnClick(R.id.direction_btn)
