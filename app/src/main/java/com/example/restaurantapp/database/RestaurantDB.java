@@ -65,7 +65,7 @@ public class RestaurantDB extends SQLiteOpenHelper {
                     + RESTAURANT_ETAT + " TEXT )";
 
 
-    public void insertInRestaurant(String nom, String tel,double latitude, double longitude, String etat,String desc,String img){
+    public long insertInRestaurant(String nom, String tel,double latitude, double longitude, String etat,String desc,String img){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(RESTAURANT_NOM,nom);
@@ -75,7 +75,7 @@ public class RestaurantDB extends SQLiteOpenHelper {
         values.put(RESTAURANT_TEL,tel);
         values.put(RESTAURANT_DESCRIPTION,desc);
         values.put(RESTAURANT_IMAGE,img);
-        db.insert(RESTAURANT_TABLE,null,values);
+        return db.insert(RESTAURANT_TABLE,null,values);
 
     }
 
@@ -85,7 +85,7 @@ public class RestaurantDB extends SQLiteOpenHelper {
     private static final String SQL_CREATE_CATEGORIEINRESTAURANT=
             "CREATE TABLE IF NOT EXISTS " + CATEGORIEINRESTAURANT_TABLE + " ( " + CATEGORIEID + " INTEGER , " + RESTAURANTID + " INTEGER  )";
 
-    public void insertInRestaurantCategorie(int idcategorie , int idrestauarant ){
+    public void insertInRestaurantCategorie(int idcategorie , long idrestauarant ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(RESTAURANTID,idrestauarant);
@@ -158,17 +158,17 @@ public class RestaurantDB extends SQLiteOpenHelper {
         insertInCategorie("Snack");
         insertInCategorie("HAMBURGER");
         String desc="On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.";
-        insertInRestaurant("La Trefle","0645947757",34.013099,-6.831316,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Mini Chicken ","0645947757",34.003864,-6.844816,"Fermé",desc,"restaurant_default_img");
-        insertInRestaurant("Les 3 Dou'soeurs ","0645947757",33.950614,-6.885714,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("StarBucks ","0645947757",33.956621,-6.867765,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Brioche Dorée","0645947757",33.955775,-6.86736,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Sunset","0645947757",34.016476,-6.833467,"Fermé",desc,"restaurant_default_img");
-        insertInRestaurant("Mini House","0645947757",12,69,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Big Bacha","0645947757",34.258272,-6.583769,"Fermé",desc,"restaurant_default_img");
-        insertInRestaurant("Mcdonalds ","0645947757",34.017499,-6.834719,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Dawliz ","0645947757",34.028233,-6.815225,"ouvert",desc,"restaurant_default_img");
-        insertInRestaurant("Step Burger ","0645947757",34.261869,-6.584398,"ouvert",desc,"restaurant_default_img");
+        insertInRestaurant("La Trefle","0645947757",34.013099,-6.831316,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("Mini Chicken ","0645947757",34.003864,-6.844816,"Close",desc,"restaurant_default_img");
+        insertInRestaurant("Les 3 Dou'soeurs ","0645947757",33.950614,-6.885714,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("StarBucks ","0645947757",33.956621,-6.867765,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("Brioche Dorée","0645947757",33.955775,-6.86736,"Close",desc,"restaurant_default_img");
+        insertInRestaurant("Sunset","0645947757",34.016476,-6.833467,"Close",desc,"restaurant_default_img");
+        insertInRestaurant("Mini House","0645947757",12,69,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("Big Bacha","0645947757",34.258272,-6.583769,"Close",desc,"restaurant_default_img");
+        insertInRestaurant("Mcdonalds ","0645947757",34.017499,-6.834719,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("Dawliz ","0645947757",34.028233,-6.815225,"Open",desc,"restaurant_default_img");
+        insertInRestaurant("Step Burger ","0645947757",34.261869,-6.584398,"Open",desc,"restaurant_default_img");
         insertInRestaurantCategorie(1,3);
         insertInRestaurantCategorie(1,5);
         insertInRestaurantCategorie(1,10);

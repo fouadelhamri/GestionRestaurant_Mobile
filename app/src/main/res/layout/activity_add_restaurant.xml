@@ -2,14 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addreastaurant_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddRestaurantActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/addrestaurant_open"
+        android:textColor="?attr/colorControlActivated"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addrestaurant_switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addrestaurant_switch"
+        app:layout_constraintTop_toTopOf="@+id/addrestaurant_switch" />
 
     <Button
         android:id="@+id/addreastaurant_addbtn"
         android:layout_width="390dp"
         android:layout_height="48dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/poppins_medium"
@@ -17,7 +33,9 @@
         android:textColor="@color/blue_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_switch"
+        app:layout_constraintVertical_bias="0.97" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -57,9 +75,11 @@
 
     <EditText
         android:id="@+id/addrestaurant_name"
-        android:layout_width="390dp"
+        android:layout_width="370dp"
         android:layout_height="43dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/input_background"
         android:ems="10"
         android:inputType="textPersonName"
@@ -81,12 +101,14 @@
 
     <EditText
         android:id="@+id/addrestaurant_tel"
-        android:layout_width="390dp"
+        android:layout_width="370dp"
         android:layout_height="37dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/input_background"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,35 +125,62 @@
         app:layout_constraintBottom_toTopOf="@+id/addrestaurant_description"
         app:layout_constraintStart_toStartOf="@+id/addrestaurant_description" />
 
-    <EditText
-        android:id="@+id/addrestaurant_description"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:width="390dp"
-        android:background="@drawable/input_background"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLines="3"
-        android:paddingStart="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_tel" />
-
     <TextView
         android:id="@+id/addrestaurant_addLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:height="40dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_vertical"
+        android:minHeight="40dp"
+        android:paddingStart="5dp"
         android:text="@string/addrestautant_addLocation"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/addrestaurant_description"
         app:layout_constraintTop_toBottomOf="@+id/addrestaurant_description" />
+
+    <EditText
+        android:id="@+id/addrestaurant_description"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:minHeight="80dp"
+        android:padding="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_tel" />
+
+    <Switch
+        android:id="@+id/addrestaurant_switch"
+        android:layout_width="59dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:ellipsize="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrestaurant_addLocation" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/addrestaurant_Close"
+        android:textColor="@color/red_bittersweet"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addrestaurant_switch"
+        app:layout_constraintEnd_toStartOf="@+id/addrestaurant_switch"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addrestaurant_switch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.restaurantapp;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.loader.content.AsyncTaskLoader;
 
 import android.Manifest;
 import android.content.Intent;
@@ -14,9 +13,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.restaurantapp.database.Restaurant;
@@ -26,12 +23,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -44,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,7 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(calling);
     }
 
-    @OnClick(R.id.mylocation_btn)
+    @OnClick(R.id.mylocation_btn2)
     void mylocation() {
         Log.d("INFORMATION_btnLocation", "your location will be marked in the map soon");
         MarkCurrentLocation();
@@ -151,6 +143,7 @@ startActivity(scannerActivity);
         }
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this).getLastLocation();
         fusedLocationProviderClient.addOnSuccessListener(location -> {
+            Log.d("information current ", "location" +location.toString());
             if (location != null) {
                 currentLocation = location;
                 Log.d("information current ", "location" + currentLocation.getLatitude() + " , " + currentLocation.getLongitude());
@@ -165,7 +158,7 @@ startActivity(scannerActivity);
     void trace_direction(){
         ///GET DIRection
         LatLng positionInitial=new LatLng(33.982581,-6.821499);//Localisation takdoum
-        Log.d("ONFORMATO","position takdoum = "+positionInitial.toString());
+        Log.d("INformation","my position in position takdoum = "+positionInitial.toString());
         String url=getRequesUrl(positionInitial,positionF);
         TaskRequestDirection taskRequestDirection=new TaskRequestDirection();
         taskRequestDirection.execute(url);

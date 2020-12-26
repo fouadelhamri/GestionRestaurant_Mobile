@@ -29,17 +29,15 @@ public class WelcomeActivity extends AppCompatActivity {
     @OnClick(R.id.ready_btn)
     void ready_clicked(){
         boolean already_logged=ref.getBoolean("isLogged",false);
-        Intent add =new Intent(this, AddRestaurantActivity.class);
-        startActivity(add);
 
-        /*if(already_logged){
+        if(already_logged){
             Intent home =new Intent(this, HomeActivity.class);
             startActivity(home);
         }else{
             Intent loginactivity =new Intent(this, SignInActivity.class);
             startActivity(loginactivity);
         }
-*/
+
         }
 
 }

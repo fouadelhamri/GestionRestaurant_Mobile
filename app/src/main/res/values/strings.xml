@@ -5,7 +5,10 @@
     <string name="Create_new_restaurant">Create new restaurant </string>
     <string name="title_activity_maps">Map</string>
     <string name="addrestaurant_name">Name :</string>
-    <string name="addrestaurant_tel" >Tel :</string>
+    <string name="addrestaurant_tel">Tel :</string>
     <string name="addrestaurant_description">Description</string>
     <string name="addrestautant_addLocation">Add location</string>
+    <string name="addrestaurant_open">Open</string>
+    <string name="addrestaurant_Close">Close</string>
+    <string name="title_activity_maps_picker">Map</string>
 </resources>

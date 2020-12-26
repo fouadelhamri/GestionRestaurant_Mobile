@@ -3,7 +3,7 @@ package com.example.restaurantapp.database;
 import java.io.Serializable;
 
 public class Restaurant implements Serializable {
-    private int id;
+    private long id;
     private String nom;
     private double latitude ;
     private double longitude;
@@ -11,7 +11,7 @@ public class Restaurant implements Serializable {
     private String tel;
     private  String image;
     private String description;
-    public Restaurant(int id, String nom, String tele,double latitude, double longitude, String etat,String description,String img) {
+    public Restaurant(long id, String nom, String tele,double latitude, double longitude, String etat,String description,String img) {
         this.id = id;
         this.nom = nom;
         this.tel=tele;
@@ -60,7 +60,7 @@ public class Restaurant implements Serializable {
         this.tel = tel;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
