@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.restaurantapp">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -36,11 +35,14 @@
             android:name=".MapsPickerActivity"
             android:label="@string/title_activity_maps_picker"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.mapactivity" />
-
-        <activity android:name=".AddRestaurantActivity"
+        <activity
+            android:name=".AddRestaurantActivity"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity" />
-
         <activity android:name=".ScanQrActivity" />
+        <activity android:name=".HomeRecycleViewActivity"
+            android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity">
+
+        </activity>
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
@@ -51,14 +53,16 @@
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity" />
-        <activity android:name=".authentification.SignInActivity"
-            android:theme="@style/Theme.RestaurantApp.Fullscreen.signactivity"/>
+        <activity
+            android:name=".authentification.SignInActivity"
+            android:theme="@style/Theme.RestaurantApp.Fullscreen.signactivity" />
         <activity
             android:name=".WelcomeActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:theme="@style/Theme.RestaurantApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

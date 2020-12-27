@@ -115,9 +115,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //add = add + "\n" + obj.getLocality();//ville
             //Log.v("IGA", "Address" + add);
             return add;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             return "NO ADRESSE FOUND";
         }
     }

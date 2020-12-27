@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantapp.HomeActivity;
+import com.example.restaurantapp.HomeRecycleViewActivity;
 import com.example.restaurantapp.R;
 import com.example.restaurantapp.RestaurantActivity;
 import com.example.restaurantapp.database.Categorie;
@@ -40,7 +41,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view=inflater.inflate(R.layout.category_single_item,parent,false);
-
         return new ViewHolder(view);
     }
 
@@ -48,13 +48,11 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(categoryList.get(position).getNom());
         holder.img.setImageResource(imageList.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent restaurants=new Intent(mcontext, RestaurantActivity.class);
-                restaurants.putExtra("category_object",categoryList.get(position));
-                mcontext.startActivity(restaurants);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            //Intent restaurants=new Intent(mcontext, RestaurantActivity.class);
+            Intent restaurants=new Intent(mcontext, HomeRecycleViewActivity.class);
+            restaurants.putExtra("category_object",categoryList.get(position));
+            mcontext.startActivity(restaurants);
         });
 
     }
@@ -64,7 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categoryList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         ImageView img;
     public ViewHolder(@NonNull View itemView) {
