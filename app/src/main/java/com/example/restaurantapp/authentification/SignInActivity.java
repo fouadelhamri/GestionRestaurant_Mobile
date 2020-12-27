@@ -49,7 +49,7 @@ public class SignInActivity extends AppCompatActivity {
         String pass=password.getText().toString();
         boolean remember_me=rememberButton.isChecked();
 
-        if(mail.equals("fouadchahd@gmail.com") && pass.equals("root")){
+        if(mail.equals("admin@gmail.com") && pass.equals("root")){
             ref.edit().putString("username",mail).apply();
             ref.edit().putString("password",pass).apply();
            if(remember_me) ref.edit().putBoolean("isLogged",true).apply();
