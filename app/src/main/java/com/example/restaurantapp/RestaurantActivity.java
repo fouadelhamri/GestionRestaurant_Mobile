@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.restaurantapp.adapters.RestaurantAdapter;
+import com.example.restaurantapp.authentification.SignInActivity;
 import com.example.restaurantapp.database.Categorie;
 import com.example.restaurantapp.database.Restaurant;
 import com.example.restaurantapp.database.RestaurantDB;
@@ -23,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
+import butterknife.OnTextChanged;
 
 public class RestaurantActivity extends AppCompatActivity {
 
@@ -41,6 +44,7 @@ public class RestaurantActivity extends AppCompatActivity {
             restaurants = dao.readRestaurantsByCategorie(categorie.getId());
             restaurantAdapter=new RestaurantAdapter(getApplicationContext(),R.layout.restaurant_single_item, (ArrayList<Restaurant>) restaurants);
             restaurant_list.setAdapter(restaurantAdapter);
+            restaurant_list.setEmptyView(findViewById(R.id.no_item_found_container));
         }
 
     }
@@ -54,6 +58,36 @@ public class RestaurantActivity extends AppCompatActivity {
 
     @BindView(R.id.restaurant_list)
     ListView restaurant_list;
+
+    @BindView(R.id.recherche_input)
+    EditText searchbare_EditText;
+
+    @OnClick(R.id.restaurant_back_btn)
+    void backToPreviousAvtivity(){
+        finish();
+    }
+
+    @OnClick(R.id.exit_btn)
+    void logout(){
+        ref.edit().clear().apply();
+        ref.edit().putBoolean("isLogged",false).apply();
+        Intent signin=new Intent(this, SignInActivity.class);
+        startActivity(signin);
+        finish();
+    }
+
+    @OnTextChanged(R.id.recherche_input)
+    void searchRestaurantByName(){
+        String restaurant_search_field=searchbare_EditText.getText().toString().toLowerCase();
+        ArrayList<Restaurant> restaurants_match_search= new ArrayList<>();
+        for(int i=0;i<restaurants.size();i++){
+            if(restaurants.get(i).getNom().toLowerCase().contains(restaurant_search_field)){
+                restaurants_match_search.add(restaurants.get(i));
+            }
+        }
+        RestaurantAdapter restaurantAdapter=new RestaurantAdapter(getApplicationContext(),R.layout.restaurant_single_item,restaurants_match_search);
+        restaurant_list.setAdapter(restaurantAdapter);
+    }
 
     @OnClick(R.id.new_btn)
     void CreateNewRestaurant()
@@ -73,6 +107,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 restaurantAdapter=null;
                 restaurantAdapter=new RestaurantAdapter(getApplicationContext(),R.layout.restaurant_single_item, (ArrayList<Restaurant>) restaurants);
                 restaurant_list.setAdapter(restaurantAdapter);
+                restaurant_list.setEmptyView(findViewById(R.id.no_item_found_container));
                 restaurantAdapter.notifyDataSetChanged();
             }
         }

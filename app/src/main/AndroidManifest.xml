@@ -34,28 +34,31 @@
 
         <activity
             android:name=".MapsPickerActivity"
-            android:label="@string/title_activity_maps_picker"></activity>
+            android:label="@string/title_activity_maps_picker"
+            android:theme="@style/Theme.RestaurantApp.Fullscreen.mapactivity" />
+
         <activity android:name=".AddRestaurantActivity"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity" />
 
         <activity android:name=".ScanQrActivity" />
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:theme="@style/Theme.RestaurantApp.Fullscreen.mapactivity" />
         <activity
             android:name=".RestaurantActivity"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity" />
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.RestaurantApp.Fullscreen.homeactivity" />
-        <activity android:name=".authentification.SignInActivity" />
+        <activity android:name=".authentification.SignInActivity"
+            android:theme="@style/Theme.RestaurantApp.Fullscreen.signactivity"/>
         <activity
             android:name=".WelcomeActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:theme="@style/Theme.RestaurantApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

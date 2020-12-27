@@ -28,6 +28,7 @@ public class SignInActivity extends AppCompatActivity {
         if(islogged){
             Intent home =new Intent(this, HomeActivity.class);
             startActivity(home);
+            finish();
         }
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
@@ -57,6 +58,7 @@ public class SignInActivity extends AppCompatActivity {
             Toast.makeText(this, "Welcome"+mymoji, Toast.LENGTH_SHORT).show();
             Intent home=new Intent(this,HomeActivity.class);
             startActivity(home);
+            finish();
         }else{
             Toast.makeText(this, "Invalid information", Toast.LENGTH_SHORT).show();
         }

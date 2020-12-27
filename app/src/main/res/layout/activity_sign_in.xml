@@ -12,12 +12,11 @@ tools:context=".authentification.SignInActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="296dp"
-        android:background="@drawable/blue_bg">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="128dp"
-            android:layout_height="111dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="60dp"
             android:src="@drawable/logo" />
@@ -30,7 +29,7 @@ tools:context=".authentification.SignInActivity">
         android:layout_marginLeft="62dp"
         android:layout_marginTop="90.7dp"
         android:layout_marginRight="62dp"
-        android:background="@drawable/blue_border_rounded_cornwe">
+        android:background="@drawable/input_background">
 
         <!-- INPUT -->
         <EditText
@@ -67,7 +66,7 @@ tools:context=".authentification.SignInActivity">
         android:layout_marginLeft="62dp"
         android:layout_marginTop="19dp"
         android:layout_marginRight="62dp"
-        android:background="@drawable/blue_border_rounded_cornwe">
+        android:background="@drawable/input_background">
 
         <!-- INPUT -->
         <EditText
@@ -107,7 +106,7 @@ tools:context=".authentification.SignInActivity">
         android:layout_marginLeft="62dp"
         android:layout_marginTop="19dp"
         android:layout_marginRight="62dp"
-        android:background="@drawable/blue_fill__rounded_color"
+        android:background="@drawable/pink_rounded_btn"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:paddingTop="14dp"
@@ -121,15 +120,18 @@ tools:context=".authentification.SignInActivity">
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
-    <CheckBox
-        android:id="@+id/rememberme_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#3F51B5"
-        android:textSize="14sp"
-        android:text="Remember me "
-        />
+
+        <CheckBox
+            android:id="@+id/rememberme_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:checked="false"
+            android:drawingCacheQuality="auto"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/Remember_me_text"
+            android:textColor="@color/black_light"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -148,20 +150,7 @@ tools:context=".authentification.SignInActivity">
         android:layout_height="wrap_content"
         android:layout_marginBottom="13.7dp"
         android:gravity="center"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center_horizontal"
-            android:text="or"
-            android:textColor="#aeaeae"
-            android:textSize="13.3sp" />
-
-
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"

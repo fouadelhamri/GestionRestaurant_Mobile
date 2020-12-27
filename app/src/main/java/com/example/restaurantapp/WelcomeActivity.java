@@ -33,9 +33,11 @@ public class WelcomeActivity extends AppCompatActivity {
         if(already_logged){
             Intent home =new Intent(this, HomeActivity.class);
             startActivity(home);
+            finish();
         }else{
             Intent loginactivity =new Intent(this, SignInActivity.class);
             startActivity(loginactivity);
+            finish();
         }
 
         }

@@ -6,9 +6,13 @@
     <string name="title_activity_maps">Map</string>
     <string name="addrestaurant_name">Name :</string>
     <string name="addrestaurant_tel">Tel :</string>
-    <string name="addrestaurant_description">Description</string>
+    <string name="addrestaurant_description">Description :</string>
     <string name="addrestautant_addLocation">Add location</string>
     <string name="addrestaurant_open">Open</string>
     <string name="addrestaurant_Close">Close</string>
     <string name="title_activity_maps_picker">Map</string>
+    <string name="noItemFound_bigmsg">No Restaurant Found</string>
+    <string name="Remember_me_text">Remember me </string>
+    <string name="Add_restaurant_title">New restaurant</string>
+    <string name="addrestaurant_btn_text">Let\'s go</string>
 </resources>

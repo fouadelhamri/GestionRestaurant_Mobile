@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -31,10 +32,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         ref = getSharedPreferences("myapp", MODE_PRIVATE);
-        /*if(!ref.getBoolean("isLogged",false)){
-            Intent login=new Intent(this, SignInActivity.class);
-            startActivity(login);
-        }*/
         int unicode=0x1F64C;
         String hello_emoji = getEmoji(unicode);
         TextView useremail=(TextView)findViewById(R.id.usermail);
@@ -42,9 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         //////////INSERT CATEGORIES IN SQLITE
         databaseManager.databaseInitialisation();
         ////get DATA
-
         categories_db =databaseManager.readCategorie();
-
         initData();
         //initialize adapter
         CategoryAdapter adapter=new CategoryAdapter(this,categories_db,images);
@@ -59,8 +54,18 @@ public class HomeActivity extends AppCompatActivity {
     List<Categorie> categories_db;
     List<Integer>images;
 
+
     @BindView(R.id.categories_list)
     RecyclerView categories_list;
+
+    @OnClick(R.id.exit_btn2)
+    void logout(){
+        ref.edit().clear().apply();
+        ref.edit().putBoolean("isLogged",false).apply();
+        Intent signin=new Intent(this, SignInActivity.class);
+        startActivity(signin);
+        finish();
+    }
 
 public void initData(){
     images=new ArrayList<>();

@@ -29,7 +29,7 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_btn"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/Create_new_restaurant"
+        android:text="@string/addrestaurant_btn_text"
         android:textColor="@color/blue_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,15 +50,28 @@
             android:id="@+id/restaurant_activity_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="35dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Add restaurant"
+            android:text="@string/Add_restaurant_title"
             android:textColor="@color/gold"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addrestaurant_back_btn"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.39" />
+
+        <ImageButton
+            android:id="@+id/addrestaurant_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_icon_small" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

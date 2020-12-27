@@ -24,32 +24,115 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/restaurant_back_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.37" />
+
+        <ImageButton
+            android:id="@+id/restaurant_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.39" />
+            app:layout_constraintVertical_bias="0.37"
+            app:srcCompat="@drawable/back_icon_small" />
+
+        <ImageButton
+            android:id="@+id/exit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41000003"
+            app:srcCompat="@drawable/ic_baseline_exit_to_app_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="397dp"
+        android:layout_height="668dp"
         android:background="@color/white_gray"
         android:paddingHorizontal="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <EditText
+            android:id="@+id/recherche_input"
+            android:layout_width="357dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_edittext_white"
+            android:drawableLeft="@android:drawable/ic_menu_search"
+            android:drawablePadding="20dp"
+            android:ems="10"
+            android:hint="Rechercher  un restaurant"
+
+            android:inputType="textPersonName"
+            android:paddingLeft="12dp"
+            android:textColor="@color/blue_black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ListView
             android:id="@+id/restaurant_list"
-            android:layout_width="386dp"
-            android:layout_height="621dp"
+            android:layout_width="376dp"
+            android:layout_height="541dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:divider="@color/white_gray"
             android:dividerHeight="10dp"
             android:padding="10dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/new_btn"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/recherche_input" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/no_item_found_container"
+            android:layout_width="match_parent"
+            android:layout_height="541dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recherche_input">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_for_noitemfound_img"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.41000003"
+                app:srcCompat="@drawable/no_item_found_icon_small" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:shadowColor="@color/black_light"
+                android:text="@string/noItemFound_bigmsg"
+                android:textColor="@color/gray_light"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/new_btn"

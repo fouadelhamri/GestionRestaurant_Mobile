@@ -156,7 +156,8 @@ public class RestaurantDB extends SQLiteOpenHelper {
         insertInCategorie("Hotel");
         insertInCategorie("Sushi");
         insertInCategorie("Snack");
-        insertInCategorie("HAMBURGER");
+        insertInCategorie("Tacos");
+        insertInCategorie("Glace");
         String desc="On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même.";
         insertInRestaurant("La Trefle","0645947757",34.013099,-6.831316,"Open",desc,"restaurant_default_img");
         insertInRestaurant("Mini Chicken ","0645947757",34.003864,-6.844816,"Close",desc,"restaurant_default_img");

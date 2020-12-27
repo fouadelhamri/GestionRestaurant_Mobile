@@ -34,6 +34,7 @@ import javax.xml.transform.Result;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 public class AddRestaurantActivity extends AppCompatActivity {
 
@@ -43,7 +44,17 @@ public class AddRestaurantActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_restaurant);
         ButterKnife.bind(this);
         catId=getIntent().getExtras().getInt("categoryID");
+        int unicode=0x1F4CD;
+        String location_mark_emoji = getEmoji(unicode);
+        addlocation_btn.setText(location_mark_emoji+" "+addlocation_btn.getText());
     }
+
+    String getEmoji(int unicode){
+        return new String(Character.toChars(unicode));
+    }
+
+    @BindView(R.id.addrestaurant_addLocation)
+    TextView addlocation_btn;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -52,6 +63,8 @@ public class AddRestaurantActivity extends AppCompatActivity {
             if(resultCode==Activity.RESULT_OK){
                LatLon local= (LatLon) data.getExtras().getSerializable("restaurant_location");
                restaurant_location=new LatLng(local.getLat(),local.getLon());
+
+               TextView location_text=findViewById(R.id.addrestaurant_addLocation);
                location_text.setText("Location details : \n"+" "+getAddress(local.getLat(),local.getLon()));
             }
         }
@@ -60,8 +73,11 @@ public class AddRestaurantActivity extends AppCompatActivity {
     public int catId;
     public LatLng restaurant_location=null;
 
-    @BindView(R.id.addrestaurant_addLocation)
-    TextView location_text;
+
+    @OnClick(R.id.addrestaurant_back_btn)
+    void backToPreviousAvtivity(){
+        finish();
+    }
 
     @BindView(R.id.addrestaurant_switch)
     Switch etat_switch;
